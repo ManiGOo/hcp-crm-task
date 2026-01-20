@@ -40,11 +40,11 @@ This project implements a backend service for logging and managing Healthcare Pr
 │   │   ├── models.py         # SQLAlchemy ORM models
 │   │   └── schemas.py        # Pydantic data models
 │   ├── backend.Dockerfile    # Dockerfile for the backend service
+│   ├── .env                      # Environment variables (e.g., GROQ_API_KEY, DB credentials)
 │   ├── README.md             # Backend-specific README
+│   ├── docker-compose.yml        # Docker Compose configuration for services
 │   └── requirements.txt      # Python dependencies
-├── .env                      # Environment variables (e.g., GROQ_API_KEY, DB credentials)
-├── docker-compose.yml        # Docker Compose configuration for services
-└── README.md                 # Project root README (this file)
+
 ```
 
 ## Getting Started
@@ -73,6 +73,7 @@ These instructions will get you a copy of the project up and running on your loc
 3.  **Build and run the services with Docker Compose:**
     Navigate to the project **backend** directory in your terminal and run:
     ```bash
+    cd backend
     docker compose up --build
     ```
     This command will:
