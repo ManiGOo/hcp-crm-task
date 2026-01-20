@@ -1,0 +1,18 @@
+# Environments
+.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Docker
+# Exclude bind-mounted volumes and other Docker-related temporary files/folders
+# (e.g., if you were to store persistent data outside of named volumes)
+# .dockerignore - though this is a build-time ignore, not a git ignore.
+# Docker related files that are often ignored, but depend on setup:
+# builder-docker-compose.yml
+# Dockerfile.local
+# .venv (if created locally, already covered)
+
+# Add any other generated files or directories here

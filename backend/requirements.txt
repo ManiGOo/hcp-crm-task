@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic
+sqlalchemy
+asyncpg  # for Postgres
+python-dotenv
+langchain
+langchain-groq
+langgraph
+langchain-core
