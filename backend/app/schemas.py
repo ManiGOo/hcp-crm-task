@@ -19,7 +19,7 @@ class OutcomeType(str, Enum):
 class InteractionBase(BaseModel):
     hcp_name: str
     attendees: Optional[str] = None
-    date: datetime
+    date: Optional[datetime] = None
     time: Optional[str] = None
     interaction_type: InteractionType
     topics: Optional[str] = None

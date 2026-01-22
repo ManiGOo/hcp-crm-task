@@ -13,6 +13,7 @@ from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
 import json
 from dotenv import load_dotenv
 import os
+import dateparser
 
 load_dotenv()
 
@@ -67,10 +68,17 @@ async def chat_with_agent(request: ChatRequest, db: AsyncSession = Depends(get_d
         if extracted_data and "hcp_name" in extracted_data:
             try:
                 # --- Preprocessing extracted_data for date and time ---
-                if "date" in extracted_data and extracted_data["date"] == "today":
-                    extracted_data["date"] = datetime.now().strftime('%Y-%m-%d')
-                elif "date" in extracted_data and extracted_data["date"] == "not specified":
-                    extracted_data["date"] = None
+                if "date" in extracted_data:
+                    if extracted_data["date"] == "not specified":
+                        extracted_data["date"] = None
+                    else:
+                        # Use dateparser for robust date parsing
+                        parsed_date = dateparser.parse(extracted_data["date"])
+                        if parsed_date:
+                            extracted_data["date"] = parsed_date.strftime('%Y-%m-%d')
+                        else:
+                            # If parsing fails, set to None to avoid validation errors
+                            extracted_data["date"] = None
                 
                 if "time" in extracted_data and extracted_data["time"] == "not specified":
                     extracted_data["time"] = None
