@@ -1,15 +1,9 @@
 # backend/app/crud.py
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-from sqlalchemy import update, delete
+from sqlalchemy import update, delete, desc
 from typing import List, Optional
 from . import models, schemas  # we'll create schemas.py next
-
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.future import select
-from sqlalchemy import update, delete
-from typing import List, Optional
-from . import models, schemas
 
 # backend/app/crud.py
 async def create_interaction(db: AsyncSession, interaction: schemas.InteractionCreate) -> models.Interaction:
@@ -37,9 +31,19 @@ async def get_interaction(db: AsyncSession, interaction_id: int) -> Optional[mod
     result = await db.execute(select(models.Interaction).filter(models.Interaction.id == interaction_id))
     return result.scalars().first()
 
-async def get_interactions(db: AsyncSession, skip: int = 0, limit: int = 100) -> List[models.Interaction]:
-    """Get list of interactions (with pagination)."""
-    result = await db.execute(select(models.Interaction).offset(skip).limit(limit))
+async def get_most_recent_interaction(db: AsyncSession) -> Optional[models.Interaction]:
+    """Get the most recent interaction from the database."""
+    result = await db.execute(select(models.Interaction).order_by(desc(models.Interaction.id)).limit(1))
+    return result.scalars().first()
+
+async def get_interactions_by_hcp_name(db: AsyncSession, hcp_name: str) -> List[models.Interaction]:
+    """Get interactions filtered by HCP name (case-insensitive search)."""
+    result = await db.execute(
+        select(models.Interaction).filter(
+            models.Interaction.hcp_name.ilike(f"%{hcp_name}%")
+        )
+    )
+
     return result.scalars().all()
 
 async def update_interaction(db: AsyncSession, interaction_id: int, updates: schemas.InteractionUpdate) -> Optional[models.Interaction]:
