@@ -33,7 +33,7 @@ class AgentState(TypedDict):
     user_name: Optional[str] # Add user_name to AgentState
 
 llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
+    model="meta-llama/llama-4-maverick-17b-128e-instruct", #meta-llama/llama-4-maverick-17b-128e-instruct  llama-3.3-70b-versatile
     temperature=0.4,
 )
 

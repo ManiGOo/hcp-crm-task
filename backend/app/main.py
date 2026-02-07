@@ -181,3 +181,15 @@ def health():
 async def list_interactions(db: AsyncSession = Depends(get_db)):
     """Retrieve all logged HCP interactions from the database."""
     return await crud.get_interactions(db)
+
+@app.post("/interaction", response_model=schemas.Interaction)
+async def create_hcp_interaction(interaction: schemas.InteractionCreate, db: AsyncSession = Depends(get_db)):
+    """
+    Handles incoming form submissions to create a new HCP interaction record.
+    Uses schemas.InteractionCreate for validation and crud.create_interaction for persistence.
+    """
+    try:
+        new_interaction = await crud.create_interaction(db, interaction)
+        return new_interaction
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Failed to create interaction: {e}")
