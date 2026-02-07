@@ -71,6 +71,49 @@ const LogInteractionScreen = () => {
     setChatInput('');
   };
 
+  const handleFormSubmit = async () => {
+    dispatch(setLoading(true));
+    try {
+      const payload = {
+        hcp_name: formData.hcpName || '',
+        date: formData.date || '',
+        time: formData.time || '',
+        interaction_type: formData.interactionType || '',
+        attendees: formData.attendees || '',
+        topics: formData.topics || '',
+        materials_distributed: formData.materialsDistributed || '',
+        outcomes: formData.outcomes || '',
+        sentiment: formData.sentiment || '',
+        follow_up: formData.followUp || '',
+        summary: formData.summary || ''
+      };
+
+      const response = await axios.post('http://localhost:8000/interaction', payload);
+      console.log('Interaction created:', response.data);
+      dispatch(addChatMessage({ role: 'assistant', content: 'Interaction logged successfully.' }));
+
+      // Optionally reset form to initial / sensible defaults
+      dispatch(updateForm({
+        hcpName: '',
+        date: '',
+        time: '',
+        interactionType: 'Meeting',
+        attendees: '',
+        topics: '',
+        materialsDistributed: '',
+        outcomes: 'Neutral',
+        followUp: '',
+        summary: '',
+        sentiment: ''
+      }));
+    } catch (error) {
+      console.error('Failed to submit interaction:', error.response?.data || error.message);
+      dispatch(addChatMessage({ role: 'assistant', content: `Failed to log interaction: ${error.response?.data?.detail || error.message}` }));
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
+
   return (
     <div style={{
       display: 'flex',
@@ -345,7 +388,9 @@ const LogInteractionScreen = () => {
         </div>
 
         <button
-          type="submit"
+          type="button"
+          onClick={handleFormSubmit}
+          disabled={loading}
           style={{
             padding: '12px 32px',
             background: '#3b82f6',
@@ -353,7 +398,7 @@ const LogInteractionScreen = () => {
             border: 'none',
             borderRadius: '6px',
             fontSize: '16px',
-            cursor: 'pointer',
+            cursor: loading ? 'not-allowed' : 'pointer',
             width: '100%',
             marginTop: '16px'
           }}

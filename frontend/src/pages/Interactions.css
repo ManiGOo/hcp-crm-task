@@ -1,0 +1,250 @@
+.page {
+  padding: 20px;
+  max-width: 1250px;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+.header-container {
+  margin-bottom: 40px;
+}
+
+.gradient-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin: 0 0 10px 0;
+  background: linear-gradient(90deg, #1e293b 0%, #6366f1 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.03em;
+}
+
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.description {
+  color: #64748b;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.action-btn {
+  background: #0f172a;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.stats-badge {
+  background: #f1f5f9;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #475569;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 25px;
+}
+
+.item-div {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.hcp-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.pill-virtual {
+  background: #f5f3ff;
+  color: #7c3aed;
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 1px solid #ddd6fe;
+}
+
+.pill-physical {
+  background: #f0fdf4;
+  color: #16a34a;
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 1px solid #dcfce7;
+}
+
+.topic-div {
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid #f1f5f9;
+}
+
+.label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 900;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.topic-text {
+  font-size: 0.9rem;
+  color: #334155;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.bottom-row {
+  display: flex;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 16px;
+  justify-content: space-between;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.value-text {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.outcome-text {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+.loader {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 1.2rem;
+  color: #6366f1;
+  font-weight: bold;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 24px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: fadeInScale 0.3s ease-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #1e293b;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #94a3b8;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detail-group {
+  margin-bottom: 10px;
+}
+
+.detail-text {
+  font-size: 1rem;
+  color: #334155;
+  margin: 5px 0 0 0;
+  line-height: 1.6;
+}
+
+.detail-text-small {
+  font-size: 0.8rem;
+  color: #334155;
+  margin: 5px 0 0 0;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  border-top: 1px solid #f1f5f9;
+  margin-top: 20px;
+}
+
+.interaction-card { transition: all 0.25s ease; cursor: pointer; }
+.interaction-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: #6366f1; }
+
+@media print {
+  .no-print { display: none !important; }
+  .interaction-card { border: 1px solid #ccc; box-shadow: none; transform: none; }
+  body { background: #fff; }
+}
